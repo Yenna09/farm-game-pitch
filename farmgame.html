@@ -64,30 +64,21 @@
     </main>
 
     <script>
-        function traerAlFrente(idClickeada) {
-            const hojaFilip = document.getElementById('hoja-filip');
-            const hojaEquipo = document.getElementById('hoja-equipo');
-
-            if (idClickeada === 'hoja-equipo') {
-                // Pasamos el equipo al frente
-                hojaEquipo.style.zIndex = "30";
-                hojaEquipo.classList.remove('background-sheet');
-                hojaEquipo.classList.add('active');
-
-                // Mandamos a Filip atrás
-                hojaFilip.style.zIndex = "5";
-                hojaFilip.classList.remove('active');
-                hojaFilip.classList.add('background-sheet');
+        function switchSheet(id) {
+            const filip = document.getElementById('hoja-filip');
+            const equipo = document.getElementById('hoja-equipo');
+            
+            if (id === 'hoja-equipo') {
+                equipo.classList.replace('background-sheet', 'active');
+                filip.classList.replace('active', 'background-sheet');
+                // Forzamos el z-index manualmente para evitar errores
+                equipo.style.zIndex = "50";
+                filip.style.zIndex = "5";
             } else {
-                // Pasamos a Filip al frente
-                hojaFilip.style.zIndex = "30";
-                hojaFilip.classList.remove('background-sheet');
-                hojaFilip.classList.add('active');
-
-                // Mandamos al equipo atrás
-                hojaEquipo.style.zIndex = "5";
-                hojaEquipo.classList.remove('active');
-                hojaEquipo.classList.add('background-sheet');
+                filip.classList.replace('background-sheet', 'active');
+                equipo.classList.replace('active', 'background-sheet');
+                filip.style.zIndex = "50";
+                equipo.style.zIndex = "5";
             }
         }
     </script>
