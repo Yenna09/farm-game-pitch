@@ -17,10 +17,107 @@
 body { margin: 0; padding: 0; transition: background 0.5s ease; }
 
 /* --- TEMA PRINCIPAL (YIB STUDIO) --- */
-.main-theme {
-    background-color: var(--color-dark-void);
-    color: var(--color-text-main);
-    font-family: 'Crimson Text', serif;
+/* Importamos fuentes clásicas y cinemáticas de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* Estilos generales: El vacío */
+body {
+    background-color: #050505; /* Un negro casi absoluto, estilo Blumhouse */
+    color: #c9c7be; /* Blanco roto, como páginas de un libro antiguo */
+    font-family: 'Crimson Text', serif; /* Fuente elegante y académica para lectura */
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Encabezado: Oscuro y atmosférico */
+header {
+    background-color: #0a0a0a;
+    padding: 50px 20px;
+    text-align: center;
+    border-bottom: 1px solid #1a1a1a; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+}
+
+header h1 {
+    margin: 0;
+    color: #ffffff;
+    font-family: 'Cinzel', serif; /* Tipografía gótica y dramática */
+    font-size: 3.8em;
+    letter-spacing: 8px;
+    font-weight: normal;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15); /* Un resplandor espectral sutil */
+}
+
+/* Navegación minimalista */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+nav a {
+    color: #737373;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    transition: all 0.4s ease;
+    border-bottom: 1px solid transparent;
+}
+
+nav a:hover {
+    color: #ffffff;
+    border-bottom: 1px solid #5e0d0d; /* Acento rojo borgoña, romántico y sangriento */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Contenedor principal */
+main {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 50px;
+    background-color: transparent; 
+}
+
+h2 {
+    color: #ffffff;
+    font-family: 'Cinzel', serif;
+    border-bottom: 1px solid #222;
+    padding-bottom: 15px;
+    font-size: 2.2em;
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+
+strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+ul {
+    margin-top: 20px;
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+/* Pie de página */
+footer {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+    color: #404040;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+}
 }
 
 .main-theme h1, .main-theme h2 { font-family: 'Cinzel', serif; letter-spacing: 4px; text-align: center; }
@@ -39,31 +136,66 @@ body { margin: 0; padding: 0; transition: background 0.5s ease; }
 .btn-dossier:hover { background: var(--color-accent-blood); border-color: var(--color-accent-blood); }
 
 /* --- TEMA SECUNDARIO (FARM GAME / PAPERS PLEASE) --- */
-.bureaucracy-page {
-    background-color: var(--color-desk);
-    font-family: 'Courier Prime', monospace;
-    padding: 50px 20px;
+/* --- ESTILO DE LA FOTO DEL EXPEDIENTE --- */
+.suspect-profile {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px dashed #888;
 }
 
-.official-dossier {
-    background: var(--color-paper);
-    color: #2b2b2b;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 40px;
-    position: relative;
-    box-shadow: 15px 15px 0px #000;
+.pixel-art-photo {
+    width: 120px;
+    height: 120px;
+    background-color: #1a1a1a;
+    padding: 10px; /* Borde blanco estilo foto Polaroid vieja */
+    border: 1px solid #000;
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.4);
+    image-rendering: pixelated; /* Mantiene el pixel art nítido */
+    transform: rotate(-3deg); /* Foto pegada un poco chueca */
 }
 
-.stamp-red {
-    position: absolute;
-    top: 40px; right: 40px;
-    border: 4px solid var(--color-stamp);
-    color: var(--color-stamp);
-    padding: 5px 15px;
-    font-weight: bold;
-    transform: rotate(15deg);
-    opacity: 0.7;
+/* --- ANIMACIONES DE MÁQUINA DE ESCRIBIR Y REVELACIÓN --- */
+.typewriter-line-1, .typewriter-line-2 {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #1a1a1a; /* El cursor parpadeante */
+    width: 0;
+}
+
+.typewriter-line-1 {
+    animation: typing 1.5s steps(30, end) forwards, blink-caret 0.75s step-end infinite;
+}
+
+.typewriter-line-2 {
+    animation: typing 1.5s steps(30, end) 1.5s forwards, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100%; border-color: transparent; } /* El cursor desaparece al terminar */
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #1a1a1a; }
+}
+
+/* Los recuadros aparecen después de que se "escriben" los datos */
+.fade-in-delayed-1 {
+    opacity: 0;
+    animation: simpleFade 1s ease forwards 3s;
+}
+
+.fade-in-delayed-2 {
+    opacity: 0;
+    animation: simpleFade 1s ease forwards 4s;
+}
+
+@keyframes simpleFade {
+    to { opacity: 1; }
 }
 
 /* Animación de entrada suave desde el vacío */
