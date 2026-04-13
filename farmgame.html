@@ -15,7 +15,7 @@
     <main class="desk-surface">
         
         <article class="official-dossier active" id="dossier-filip" onclick="switchSheet('dossier-filip')">
-            <div class="folder-label">Expediente #09 </div>
+            <div class="folder-label">FORMULARIO 11-A</div>
             <div class="dossier-inner">
                 <div class="stamp-red">DENEGADO</div>
                 <header class="dossier-header">
@@ -25,7 +25,7 @@
                 <hr class="divider">
                 <section class="suspect-profile">
                     <div class="polaroid-wrapper">
-                        <img src="filip.png.gif" alt="Sujeto: Filip" class="polaroid-img">
+                        <img src="filip.png" alt="Sujeto: Filip" class="polaroid-img">
                     </div>
                     <div class="suspect-data">
                         <p class="typewriter-line-1"><strong>PROTAGONISTA:</strong> Filip (Conejo)</p>
@@ -52,7 +52,7 @@
                 </header>
                 <hr class="divider">
                 <div class="rules-box">
-                    <ul class="team-list" style="list-style: none; padding: 0; font-family: 'Courier Prime'; line-height: 1.8;">
+                    <ul class="team-list">
                         <li><strong>IVÁN RAMÍREZ:</strong> Lead Programmer</li>
                         <li><strong>IVO AGUSTÍN ANRIQUEZ:</strong> Art Director</li>
                         <li><strong>VALENTINA ZABALA LERENA:</strong> Lead Producer</li>
@@ -65,24 +65,18 @@
                 </p>
             </div>
         </article>
-
     </main>
 
     <script>
         function switchSheet(id) {
             const filip = document.getElementById('dossier-filip');
             const team = document.getElementById('dossier-team');
-            
             if (id === 'dossier-team') {
-                team.classList.remove('background-sheet');
-                team.classList.add('active');
-                filip.classList.add('background-sheet');
-                filip.classList.remove('active');
+                team.classList.replace('background-sheet', 'active');
+                filip.classList.replace('active', 'background-sheet');
             } else {
-                filip.classList.remove('background-sheet');
-                filip.classList.add('active');
-                team.classList.add('background-sheet');
-                team.classList.remove('active');
+                filip.classList.replace('background-sheet', 'active');
+                team.classList.replace('active', 'background-sheet');
             }
         }
     </script>
