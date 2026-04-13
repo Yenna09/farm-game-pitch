@@ -14,10 +14,7 @@
 
     <main class="desk-surface">
         
-       <article 
-           class="official-dossier active" id="hoja-filip" onclick="switchSheet('hoja-filip')">
-       </article>
-        
+        <article class="official-dossier active" id="hoja-filip" onclick="switchSheet('hoja-filip')">
             <div class="dossier-inner">
                 <div class="stamp-red">DENEGADO</div>
                 <header class="dossier-header">
@@ -27,7 +24,7 @@
                 <hr class="divider">
                 <section class="suspect-profile">
                     <div class="polaroid-wrapper">
-                        <img src="filip.png.gif" alt="Filip" class="polaroid-img">
+                        <img src="filip.png" alt="Filip" class="polaroid-img">
                     </div>
                     <div class="suspect-data">
                         <p class="typewriter-line-1"><strong>PROTAGONISTA:</strong> Filip (Conejo)</p>
@@ -43,10 +40,9 @@
                     </ul>
                 </div>
             </div>
-
-        <article 
-            class="official-dossier background-sheet" id="hoja-equipo" onclick="switchSheet('hoja-equipo')">
         </article>
+
+        <article class="official-dossier background-sheet" id="hoja-equipo" onclick="switchSheet('hoja-equipo')">
             <div class="folder-label">ANEXO DE PERSONAL</div>
             <div class="dossier-inner">
                 <header class="dossier-header">
@@ -64,31 +60,27 @@
                     </ul>
                 </div>
             </div>
+        </article>
+
     </main>
 
     <script>
         function switchSheet(id) {
-        const filip = document.getElementById('hoja-filip');
-        const equipo = document.getElementById('hoja-equipo');
-        
-        if (id === 'hoja-equipo') {
-            // Traemos Equipo al frente
-            equipo.classList.remove('background-sheet');
-            equipo.classList.add('active');
+            const filip = document.getElementById('hoja-filip');
+            const equipo = document.getElementById('hoja-equipo');
             
-            // Mandamos Filip al fondo
-            filip.classList.remove('active');
-            filip.classList.add('background-sheet');
-        } else {
-            // Traemos Filip al frente
-            filip.classList.remove('background-sheet');
-            filip.classList.add('active');
-            
-            // Mandamos Equipo al fondo
-            equipo.classList.remove('active');
-            equipo.classList.add('background-sheet');
+            if (id === 'hoja-equipo') {
+                equipo.classList.remove('background-sheet');
+                equipo.classList.add('active');
+                filip.classList.remove('active');
+                filip.classList.add('background-sheet');
+            } else {
+                filip.classList.remove('background-sheet');
+                filip.classList.add('active');
+                equipo.classList.remove('active');
+                equipo.classList.add('background-sheet');
+            }
         }
-    }
     </script>
 </body>
 </html>
