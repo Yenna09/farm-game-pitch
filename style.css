@@ -1,38 +1,80 @@
+/* --- 1. CONFIGURACIÓN Y VARIABLES --- */
+/* Importamos todas las fuentes en una sola línea para optimizar la carga */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap');
+
 :root {
-    /* Colores YIB Studio (Elegancia) */
+    /* Colores YIB Studio (Elegancia Oscura) */
     --color-dark-void: #050505;
     --color-text-main: #c9c7be;
     --color-accent-blood: #5e0d0d;
 
-    /* Colores Farm Game (Burocracia) */
-    --color-paper: #d3d0c9;
+    /* Colores Farm Game (Burocracia y Expediente) */
+    --color-paper: #e5e0d2;
+    --color-document-dark: #121212;
     --color-desk: #1e1e1e;
-    --color-stamp: #7b2b2b;
+    --color-stamp: #8b0000;
 }
 
-/* FUENTES */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Crimson+Text&family=Courier+Prime&display=swap');
+body { 
+    margin: 0; 
+    padding: 0; 
+    transition: background 0.5s ease; 
+}
 
-/* --- ESTILOS COMPARTIDOS --- */
-body { margin: 0; padding: 0; transition: background 0.5s ease; }
 
-/* --- TEMA PRINCIPAL (YIB STUDIO) --- */
-/* Importamos fuentes clásicas y cinemáticas de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+/* --- 2. ANIMACIONES GLOBALES --- */
 
-/* Estilos generales: El vacío */
-body {
-    background-color: #050505; /* Un negro casi absoluto, estilo Blumhouse */
-    color: #c9c7be; /* Blanco roto, como páginas de un libro antiguo */
-    font-family: 'Crimson Text', serif; /* Fuente elegante y académica para lectura */
+/* Animación de entrada suave desde el vacío */
+.content-fade {
+    animation: fadeIn 1.8s ease-out forwards;
+    opacity: 0; 
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Animaciones de máquina de escribir */
+.typewriter-line-1, .typewriter-line-2 {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--color-paper); /* Cursor claro para fondo oscuro */
+    width: 0;
+}
+
+.typewriter-line-1 { animation: typing 1.5s steps(30, end) forwards, blink-caret 0.75s step-end infinite; }
+.typewriter-line-2 { animation: typing 1.5s steps(30, end) 1.5s forwards, blink-caret 0.75s step-end infinite; }
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100%; border-color: transparent; } 
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--color-paper); }
+}
+
+/* Animación de aparición con retraso para los recuadros */
+.fade-in-delayed-1 { opacity: 0; animation: simpleFade 1s ease forwards 3s; }
+.fade-in-delayed-2 { opacity: 0; animation: simpleFade 1s ease forwards 4s; }
+
+@keyframes simpleFade { to { opacity: 1; } }
+
+
+/* ==========================================================================
+   3. TEMA PRINCIPAL: YIB STUDIO (index.html)
+   ========================================================================== */
+.main-theme {
+    background-color: var(--color-dark-void); 
+    color: var(--color-text-main); 
+    font-family: 'Crimson Text', serif; 
     font-size: 22px;
-    margin: 0;
-    padding: 0;
     line-height: 1.6;
 }
 
-/* Encabezado: Oscuro y atmosférico */
-header {
+.main-theme header {
     background-color: #0a0a0a;
     padding: 50px 20px;
     text-align: center;
@@ -40,18 +82,22 @@ header {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
 }
 
-header h1 {
-    margin: 0;
-    color: #ffffff;
-    font-family: 'Cinzel', serif; /* Tipografía gótica y dramática */
-    font-size: 3.8em;
-    letter-spacing: 8px;
+.main-theme h1, .main-theme h2 { 
+    font-family: 'Cinzel', serif; 
+    letter-spacing: 4px; 
+    text-align: center; 
     font-weight: normal;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15); /* Un resplandor espectral sutil */
 }
 
-/* Navegación minimalista */
-nav ul {
+.main-theme h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 3.8em;
+    letter-spacing: 8px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15); 
+}
+
+.main-theme nav ul {
     list-style: none;
     padding: 0;
     display: flex;
@@ -60,7 +106,7 @@ nav ul {
     margin-top: 30px;
 }
 
-nav a {
+.main-theme nav a {
     color: #737373;
     text-decoration: none;
     font-family: 'Cinzel', serif;
@@ -72,45 +118,31 @@ nav a {
     border-bottom: 1px solid transparent;
 }
 
-nav a:hover {
+.main-theme nav a:hover {
     color: #ffffff;
-    border-bottom: 1px solid #5e0d0d; /* Acento rojo borgoña, romántico y sangriento */
+    border-bottom: 1px solid var(--color-accent-blood); 
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-/* Contenedor principal */
-main {
+.main-theme main {
     max-width: 800px;
     margin: 60px auto;
     padding: 50px;
-    background-color: transparent; 
 }
 
-h2 {
+.main-theme h2 {
     color: #ffffff;
-    font-family: 'Cinzel', serif;
     border-bottom: 1px solid #222;
     padding-bottom: 15px;
     font-size: 2.2em;
     letter-spacing: 2px;
-    font-weight: normal;
 }
 
-strong {
-    color: #ffffff;
-    font-weight: 600;
-}
+.main-theme strong { color: #ffffff; font-weight: 600; }
+.main-theme ul { margin-top: 20px; }
+.main-theme li { margin-bottom: 15px; }
 
-ul {
-    margin-top: 20px;
-}
-
-li {
-    margin-bottom: 15px;
-}
-
-/* Pie de página */
-footer {
+.main-theme footer {
     text-align: center;
     padding: 50px;
     font-size: 18px;
@@ -118,9 +150,6 @@ footer {
     font-family: 'Cinzel', serif;
     letter-spacing: 2px;
 }
-}
-
-.main-theme h1, .main-theme h2 { font-family: 'Cinzel', serif; letter-spacing: 4px; text-align: center; }
 
 /* Botón de acceso al expediente */
 .btn-dossier {
@@ -133,91 +162,19 @@ footer {
     font-family: 'Cinzel';
     transition: 0.3s;
 }
-.btn-dossier:hover { background: var(--color-accent-blood); border-color: var(--color-accent-blood); }
 
-/* --- TEMA SECUNDARIO (FARM GAME / PAPERS PLEASE) --- */
-/* --- ESTILO DE LA FOTO DEL EXPEDIENTE --- */
-.suspect-profile {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px dashed #888;
+.btn-dossier:hover { 
+    background: var(--color-accent-blood); 
+    border-color: var(--color-accent-blood); 
 }
 
-.pixel-art-photo {
-    width: 120px;
-    height: 120px;
-    background-color: #1a1a1a;
-    padding: 10px; /* Borde blanco estilo foto Polaroid vieja */
-    border: 1px solid #000;
-    box-shadow: 2px 4px 8px rgba(0,0,0,0.4);
-    image-rendering: pixelated; /* Mantiene el pixel art nítido */
-    transform: rotate(-3deg); /* Foto pegada un poco chueca */
-}
 
-/* --- ANIMACIONES DE MÁQUINA DE ESCRIBIR Y REVELACIÓN --- */
-.typewriter-line-1, .typewriter-line-2 {
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid #1a1a1a; /* El cursor parpadeante */
-    width: 0;
-}
+/* ==========================================================================
+   4. TEMA SECUNDARIO: FARM GAME (farmgame.html)
+   ========================================================================== */
 
-.typewriter-line-1 {
-    animation: typing 1.5s steps(30, end) forwards, blink-caret 0.75s step-end infinite;
-}
-
-.typewriter-line-2 {
-    animation: typing 1.5s steps(30, end) 1.5s forwards, blink-caret 0.75s step-end infinite;
-}
-
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100%; border-color: transparent; } /* El cursor desaparece al terminar */
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #1a1a1a; }
-}
-
-/* Los recuadros aparecen después de que se "escriben" los datos */
-.fade-in-delayed-1 {
-    opacity: 0;
-    animation: simpleFade 1s ease forwards 3s;
-}
-
-.fade-in-delayed-2 {
-    opacity: 0;
-    animation: simpleFade 1s ease forwards 4s;
-}
-
-@keyframes simpleFade {
-    to { opacity: 1; }
-}
-
-/* Animación de entrada suave desde el vacío */
-.content-fade {
-    animation: fadeIn 1.8s ease-out forwards;
-    opacity: 0; /* Empieza invisible */
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(15px); /* Empieza un poco más abajo */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0); /* Sube a su posición original flotando ligeramente */
-    }
-}
-
-/* --- AMBIENTE: MESA DE MADERA Y LUZ DE VELADOR --- */
+/* --- Ambiente: Mesa de madera y luz de velador --- */
 .bureaucracy-page {
-    /* Simulamos la madera con un degradado lineal */
     background: 
         radial-gradient(circle at 15% 50%, rgba(255, 240, 150, 0.15) 0%, rgba(0,0,0,0.6) 60%),
         linear-gradient(90deg, #2a1b0a 0%, #3d2b16 50%, #2a1b0a 100%);
@@ -230,37 +187,50 @@ footer {
     overflow-x: hidden;
 }
 
-/* Efecto de luz tenue (Velador de costado) */
+/* Efecto de luz tenue (Velador) */
 .bureaucracy-page::before {
     content: "";
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* Gradiente radial descentrado que simula la lámpara a la izquierda */
     background: radial-gradient(circle at 10% 40%, rgba(255, 220, 100, 0.1) 0%, transparent 50%);
     pointer-events: none;
     z-index: 10;
 }
 
-/* --- EL PAPEL ENVEJECIDO (EL EXPEDIENTE) --- */
+/* Botón de volver */
+.return-link {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+    z-index: 11;
+}
+
+.return-link a { 
+    color: #a8a395; 
+    text-decoration: none; 
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.9em; 
+    letter-spacing: 1px;
+}
+
+.return-link a:hover { color: #fff; }
+
+/* --- El Expediente (Carpeta exterior clara texturizada) --- */
 .official-dossier {
-    background-color: #e8e2d2; /* Tono base hueso/pergamino */
+    background-color: var(--color-paper);
     background-image: 
         repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px),
         radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2), rgba(0,0,0,0.05));
-    color: #333;
-    max-width: 750px;
-    padding: 60px;
-    border: 1px solid #c4bc9d;
+    padding: 25px; 
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 15px 20px 40px rgba(0,0,0,0.9);
+    transform: rotate(0.5deg);
     position: relative;
-    /* Sombra profunda para que el papel parezca levantado de la mesa */
-    box-shadow: 
-        2px 2px 0px #b5ae96,
-        15px 15px 40px rgba(0,0,0,0.7);
-    font-family: 'Courier Prime', monospace;
-    transform: rotate(0.5deg); /* Ligera inclinación natural */
+    z-index: 11;
 }
 
-/* Manchas de desgaste en el papel */
+/* Manchas de desgaste en la carpeta */
 .official-dossier::after {
     content: "";
     position: absolute;
@@ -269,28 +239,118 @@ footer {
     pointer-events: none;
 }
 
-.id-tag {
-    background: #222;
-    color: #fff;
-    padding: 2px 10px;
-    font-size: 0.8em;
-    letter-spacing: 2px;
+/* --- El Documento Interno (Fondo oscuro) --- */
+.dossier-inner {
+    background-color: var(--color-document-dark); 
+    color: var(--color-paper); 
+    padding: 60px;
+    position: relative;
+    font-family: 'Cinzel', serif; 
+    border: 1px solid #2a2a2a;
 }
 
+.dossier-header { text-align: center; margin-bottom: 40px; }
+
+.id-tag {
+    background: #2a2a2a;
+    color: #a8a395;
+    padding: 5px 15px;
+    font-size: 0.8em;
+    font-family: 'Courier Prime', monospace;
+    letter-spacing: 3px;
+    border: 1px solid #444;
+}
+
+.dossier-header h2 {
+    margin-top: 30px;
+    font-size: 2.5em;
+    letter-spacing: 4px;
+    line-height: 1.4;
+    border: none;
+    text-align: center;
+}
+
+.divider {
+    border: 0;
+    border-top: 2px dashed #444;
+    margin: 30px 0;
+}
+
+/* --- Sección de Perfil y Polaroid --- */
+.suspect-profile {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 10px 0;
+}
+
+.polaroid-wrapper {
+    background-color: var(--color-paper); 
+    padding: 12px 12px 40px 12px; 
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.7);
+    transform: rotate(-4deg); 
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 12;
+}
+
+.polaroid-wrapper:hover {
+    transform: rotate(0deg) scale(1.05); 
+}
+
+.polaroid-img {
+    width: 140px;
+    height: 140px;
+    background-color: #1a1a1a;
+    object-fit: contain;
+    image-rendering: pixelated; 
+    border: 1px solid #111;
+}
+
+.suspect-data p {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-family: 'Courier Prime', monospace; /* Para la animación de escritura */
+}
+
+.suspect-data strong { color: #fff; }
+
+/* --- Recuadro de Reglamento --- */
+.rules-box {
+    border: 1px solid #555;
+    padding: 30px;
+    margin-top: 20px;
+    background: rgba(255,255,255,0.02);
+}
+
+.rules-box h3 {
+    margin-top: 0;
+    font-size: 1.4em;
+    letter-spacing: 2px;
+    border-bottom: none;
+    color: #fff;
+}
+
+.rules-box ul {
+    line-height: 2;
+    font-size: 1.1em;
+    font-family: 'Courier Prime', monospace;
+}
+
+/* --- Sello Denegado --- */
 .stamp-red {
     position: absolute;
-    top: 50px;
-    right: 40px;
-    border: 5px double #8b0000;
-    color: #8b0000;
+    top: 40px;
+    right: 30px;
+    border: 4px double var(--color-stamp);
+    color: var(--color-stamp);
     padding: 10px 20px;
-    font-size: 2em;
+    font-size: 2.2em;
+    font-family: 'Courier Prime', monospace;
     font-weight: bold;
-    text-transform: uppercase;
-    transform: rotate(15deg);
+    transform: rotate(18deg);
     opacity: 0.6;
-    mix-blend-mode: multiply; /* Hace que el sello parezca tinta sobre papel */
+    pointer-events: none;
+    z-index: 15;
 }
-
-.field-box { border: 2px solid #888; padding: 15px; margin-top: 20px; }
-.return-link a { color: #888; text-decoration: none; font-size: 0.8em; }
