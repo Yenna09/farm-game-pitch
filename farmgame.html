@@ -14,7 +14,10 @@
 
     <main class="desk-surface">
         
-        <article class="official-dossier active" id="hoja-filip" onclick="traerAlFrente('hoja-filip')">
+       <article 
+           class="official-dossier active" id="hoja-filip" onclick="switchSheet('hoja-filip')">
+       </article>
+        
             <div class="dossier-inner">
                 <div class="stamp-red">DENEGADO</div>
                 <header class="dossier-header">
@@ -40,9 +43,10 @@
                     </ul>
                 </div>
             </div>
-        </article>
 
-        <article class="official-dossier background-sheet" id="hoja-equipo" onclick="traerAlFrente('hoja-equipo')">
+        <article 
+            class="official-dossier background-sheet" id="hoja-equipo" onclick="switchSheet('hoja-equipo')">
+        </article>
             <div class="folder-label">ANEXO DE PERSONAL</div>
             <div class="dossier-inner">
                 <header class="dossier-header">
@@ -60,25 +64,38 @@
                     </ul>
                 </div>
             </div>
-        </article>
     </main>
 
     <script>
-        function switchSheet(id) {
-            const filip = document.getElementById('hoja-filip');
-            const equipo = document.getElementById('hoja-equipo');
-            
-            if (id === 'hoja-equipo') {
-                equipo.classList.replace('background-sheet', 'active');
-                filip.classList.replace('active', 'background-sheet');
-                // Forzamos el z-index manualmente para evitar errores
-                equipo.style.zIndex = "50";
-                filip.style.zIndex = "5";
-            } else {
-                filip.classList.replace('background-sheet', 'active');
-                equipo.classList.replace('active', 'background-sheet');
-                filip.style.zIndex = "50";
-                equipo.style.zIndex = "5";
+        function switchSheet(id) 
+        {
+          const filip = document.getElementById('hoja-filip');
+          const equipo = document.getElementById('hoja-equipo');
+        
+          if (id === 'hoja-equipo')
+           {
+            // Traemos Equipo al frente
+            equipo.classList.remove('background-sheet');
+            equipo.classList.add('active');
+            equipo.style.zIndex = "50";
+
+            // Mandamos a Filip al fondo
+            filip.classList.remove('active');
+            filip.classList.add('background-sheet');
+            filip.style.zIndex = "5";
+           } 
+          else 
+        
+           {
+            // Traemos a Filip al frente
+            filip.classList.remove('background-sheet');
+            filip.classList.add('active');
+            filip.style.zIndex = "50";
+
+            // Mandamos a Equipo al fondo
+            equipo.classList.remove('active');
+            equipo.classList.add('background-sheet');
+            equipo.style.zIndex = "5";
             }
         }
     </script>
