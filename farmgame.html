@@ -67,37 +67,28 @@
     </main>
 
     <script>
-        function switchSheet(id) 
-        {
-          const filip = document.getElementById('hoja-filip');
-          const equipo = document.getElementById('hoja-equipo');
+        function switchSheet(id) {
+        const filip = document.getElementById('hoja-filip');
+        const equipo = document.getElementById('hoja-equipo');
         
-          if (id === 'hoja-equipo')
-           {
+        if (id === 'hoja-equipo') {
             // Traemos Equipo al frente
             equipo.classList.remove('background-sheet');
             equipo.classList.add('active');
-            equipo.style.zIndex = "50";
-
-            // Mandamos a Filip al fondo
+            
+            // Mandamos Filip al fondo
             filip.classList.remove('active');
             filip.classList.add('background-sheet');
-            filip.style.zIndex = "5";
-           } 
-          else 
-        
-           {
-            // Traemos a Filip al frente
+        } else {
+            // Traemos Filip al frente
             filip.classList.remove('background-sheet');
             filip.classList.add('active');
-            filip.style.zIndex = "50";
-
-            // Mandamos a Equipo al fondo
+            
+            // Mandamos Equipo al fondo
             equipo.classList.remove('active');
             equipo.classList.add('background-sheet');
-            equipo.style.zIndex = "5";
-            }
         }
+    }
     </script>
 </body>
 </html>
