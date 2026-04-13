@@ -24,10 +24,16 @@ body { margin: 0; padding: 0; }
     background-color: #0a0a0a; padding: 50px 20px; text-align: center;
     border-bottom: 1px solid #1a1a1a; box-shadow: 0 10px 30px rgba(0,0,0,0.9);
 }
+.main-theme h1 {
+    font-family: 'Cinzel', serif !important;
+    color: #fff; font-size: 3.5em; letter-spacing: 8px; margin: 0;
+}
 .main-theme main {
     max-width: 850px; margin: 60px auto !important; padding: 50px;
     text-align: center; animation: fadeIn 1.8s ease-out forwards;
 }
+.main-theme h2 { font-family: 'Cinzel', serif !important; color: #fff; letter-spacing: 3px; }
+
 .btn-dossier {
     display: inline-block; padding: 12px 30px; margin-top: 30px;
     border: 1px solid var(--color-text-main); color: var(--color-text-main);
@@ -65,14 +71,28 @@ body { margin: 0; padding: 0; }
 }
 .background-sheet:hover { left: 45px; filter: brightness(0.6); }
 
-.dossier-inner { background-color: var(--color-document-dark); color: var(--color-paper); padding: 40px; border: 1px solid #2a2a2a; position: relative; }
-.typewriter-line-1, .typewriter-line-2 { overflow: hidden; white-space: nowrap; border-right: 3px solid var(--color-paper); width: 0; font-family: 'Courier Prime'; }
+.dossier-inner { background-color: var(--color-document-dark); color: var(--color-paper); padding: 40px; border: 1px solid #2a2a2a; position: relative; font-family: 'Cinzel', serif; }
+
+/* ESTILO POLAROID DEFINITIVO */
+.polaroid-wrapper { 
+    background-color: var(--color-paper); 
+    padding: 10px 10px 35px 10px; 
+    transform: rotate(-4deg); 
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.5);
+    display: inline-block;
+}
+.polaroid-img { width: 150px; height: 150px; object-fit: contain; image-rendering: pixelated; background: #000; }
+
+.suspect-profile { display: flex; align-items: center; gap: 40px; margin: 20px 0; text-align: left; }
+.suspect-data p { font-family: 'Courier Prime'; font-size: 1.1em; margin: 10px 0; color: var(--color-paper); }
+
+/* Animaciones y otros */
+.typewriter-line-1, .typewriter-line-2 { overflow: hidden; white-space: nowrap; border-right: 3px solid var(--color-paper); width: 0; }
 .typewriter-line-1 { animation: typing 1.5s steps(30, end) forwards; }
 .typewriter-line-2 { animation: typing 1.5s steps(30, end) 1.5s forwards; }
-
 @keyframes typing { from { width: 0 } to { width: 100%; border-color: transparent; } }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
 .stamp-red { position: absolute; top: 30px; right: 20px; border: 3px double #8b0000; color: #8b0000; padding: 5px 10px; font-size: 1.5em; transform: rotate(15deg); font-weight: bold; opacity: 0.6; z-index: 21; pointer-events: none; font-family: 'Courier Prime'; }
-.return-link { width: 100%; max-width: 650px; margin-bottom: 20px; z-index: 100; }
+.return-link { width: 100%; max-width: 650px; margin-bottom: 20px; z-index: 100; position: relative; }
 .return-link a { color: #888; text-decoration: none; font-family: 'Courier Prime'; }
