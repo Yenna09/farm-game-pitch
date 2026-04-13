@@ -1,5 +1,5 @@
 /* ==========================================================================
-   YIB STUDIO & FARM GAME - MASTER STYLE (FINAL UNIFICADO)
+   YIB STUDIO & FARM GAME - MASTER STYLE (V4.0 FINAL)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap');
@@ -10,7 +10,7 @@
     --color-accent-blood: #5e0d0d;
     --color-paper: #e5e0d2;
     --color-document-dark: #121212;
-    --color-desk: #0d0803; /* Madera oscura de interrogatorio */
+    --color-desk: #0d0803;
     --color-stamp: #8b0000;
 }
 
@@ -28,20 +28,18 @@ body {
 @keyframes typing { from { width: 0 } to { width: 100%; border-color: transparent; } }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Luz de Interrogatorio */
 @keyframes swayInterrogation {
     0% { transform: translateX(-25%) rotate(-5deg); opacity: 0.8; }
     50% { opacity: 1; }
     100% { transform: translateX(25%) rotate(5deg); opacity: 0.8; }
 }
 
-/* Brillo Etéreo del Título */
 @keyframes glowTitle {
     from { text-shadow: 0 0 5px rgba(255, 255, 255, 0.1); opacity: 0.8; }
     to { text-shadow: 0 0 25px rgba(255, 255, 255, 0.4); opacity: 1; }
 }
 
-/* --- 2. TEMA PRINCIPAL: YIB STUDIO (Home / Equipo / Contacto) --- */
+/* --- 2. TEMA PRINCIPAL: YIB STUDIO (Global) --- */
 .main-theme {
     background-color: var(--color-dark-void) !important;
     color: var(--color-text-main);
@@ -66,7 +64,6 @@ body {
     animation: glowTitle 4s ease-in-out infinite alternate;
 }
 
-/* Navegación Refinada */
 .main-theme nav ul {
     list-style: none;
     padding: 0;
@@ -99,16 +96,67 @@ body {
 .main-theme nav a:hover::after { width: 100%; left: 0; }
 
 .main-theme main {
-    max-width: 850px;
+    max-width: 1000px; /* Un poco más ancho para el grid */
     margin: 60px auto !important;
     padding: 50px;
     text-align: center;
-    flex: 1; /* Empuja el footer hacia abajo */
+    flex: 1;
 }
 
 .main-theme h2 { font-family: 'Cinzel', serif !important; color: #fff; margin-bottom: 30px; }
 
-/* Tarjetas de Proyecto / Equipo */
+/* --- 3. SECCIÓN: EL CÓNCLAVE (team.html) --- */
+.conclave-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+    padding: 20px;
+}
+
+.member-card {
+    background: rgba(10, 10, 10, 0.5);
+    border: 1px solid #1a1a1a;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.member-card:hover {
+    border-color: var(--color-accent-blood);
+    box-shadow: 0 10px 30px rgba(94, 13, 13, 0.15);
+    transform: translateY(-5px);
+}
+
+.member-photo-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #111;
+    border: 2px solid #222;
+    margin-bottom: 25px;
+    transition: border-color 0.4s ease;
+    overflow: hidden; /* Para cuando pongas fotos */
+}
+
+.member-card:hover .member-photo-placeholder { border-color: var(--color-accent-blood); }
+
+.member-role {
+    color: var(--color-accent-blood);
+    font-family: 'Cinzel', serif;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 10px 0 15px 0;
+}
+
+.member-desc { font-size: 0.9em; line-height: 1.5; color: #888; margin: 0; }
+
+/* --- 4. SECCIÓN: PROYECTOS (index.html) --- */
 .project-card {
     background: rgba(10, 10, 10, 0.8);
     border: 1px solid #222;
@@ -117,11 +165,7 @@ body {
     border-radius: 2px;
 }
 
-.project-card:hover {
-    border-color: var(--color-accent-blood);
-    box-shadow: 0 0 30px rgba(94, 13, 13, 0.2);
-    transform: translateY(-5px);
-}
+.project-card:hover { border-color: var(--color-accent-blood); box-shadow: 0 0 30px rgba(94, 13, 13, 0.2); }
 
 .btn-dossier {
     display: inline-block;
@@ -141,117 +185,43 @@ body {
 
 .btn-dossier:hover { background: var(--color-accent-blood); border-color: var(--color-accent-blood); color: white; }
 
-/* --- 3. TEMA SECUNDARIO: FARM GAME (Interrogatorio) --- */
+/* --- 5. TEMA FARM GAME (Interrogatorio) --- */
 .bureaucracy-page {
     background-color: var(--color-desk) !important;
-    background-image: 
-        radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 80%),
-        url('https://www.transparenttextures.com/patterns/wood-pattern.png') !important;
+    background-image: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 80%), url('https://www.transparenttextures.com/patterns/wood-pattern.png') !important;
     background-attachment: fixed;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-    overflow-x: hidden;
+    display: flex; flex-direction: column; align-items: center; padding: 40px 20px; overflow-x: hidden;
 }
 
 .bureaucracy-page::before {
-    content: "";
-    position: fixed; 
-    top: -20%; 
-    left: 0; 
-    width: 100vw; 
-    height: 140vh;
-    background: radial-gradient(
-        circle at 50% 50%, 
-        rgba(255, 230, 150, 0.25) 0%, 
-        rgba(255, 200, 100, 0.08) 30%, 
-        transparent 60%
-    );
-    pointer-events: none; 
-    z-index: 100;
-    filter: blur(60px);
+    content: ""; position: fixed; top: -20%; left: 0; width: 100vw; height: 140vh;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 230, 150, 0.25) 0%, rgba(255, 200, 100, 0.08) 30%, transparent 60%);
+    pointer-events: none; z-index: 100; filter: blur(60px);
     animation: swayInterrogation 10s ease-in-out infinite alternate !important;
 }
 
-.desk-surface { 
-    position: relative; 
-    width: 100%; 
-    max-width: 650px; 
-    height: 850px; 
-    margin: 40px auto; 
-    z-index: 10;
-}
+.desk-surface { position: relative; width: 100%; max-width: 650px; height: 850px; margin: 40px auto; z-index: 10; }
 
 .official-dossier {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    background-color: var(--color-paper);
-    padding: 20px;
-    box-shadow: 10px 15px 30px rgba(0,0,0,0.8);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
+    position: absolute; top: 0; left: 0; width: 100%; background-color: var(--color-paper);
+    padding: 20px; box-shadow: 10px 15px 30px rgba(0,0,0,0.8);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;
 }
 
 .official-dossier.active { z-index: 50; transform: rotate(0.5deg); filter: brightness(1); }
 .official-dossier.background-sheet { z-index: 10; transform: rotate(3deg) translate(20px, 15px); filter: brightness(0.4); }
-.official-dossier.background-sheet:hover { filter: brightness(0.6); transform: rotate(4deg) translate(35px, 20px); }
 
-.dossier-inner { 
-    background-color: var(--color-document-dark); 
-    color: var(--color-paper); 
-    padding: 40px; 
-    border: 1px solid #2a2a2a; 
-    font-family: 'Cinzel', serif; 
-}
+.dossier-inner { background-color: var(--color-document-dark); color: var(--color-paper); padding: 40px; border: 1px solid #2a2a2a; font-family: 'Cinzel', serif; }
 
-/* Polaroid y Otros */
-.polaroid-wrapper { 
-    background-color: var(--color-paper); 
-    padding: 10px 10px 35px 10px; 
-    transform: rotate(-4deg); 
-    box-shadow: 5px 10px 20px rgba(0,0,0,0.5);
-    display: inline-block;
-}
-.polaroid-img { width: 150px; height: 150px; object-fit: contain; image-rendering: pixelated; background: #000; }
-.suspect-profile { display: flex; align-items: center; gap: 40px; margin: 20px 0; text-align: left; }
-.suspect-data p { font-family: 'Courier Prime'; font-size: 1.1em; margin: 10px 0; }
-.stamp-red { position: absolute; top: 30px; right: 20px; border: 3px double var(--color-stamp); color: var(--color-stamp); padding: 5px 10px; font-size: 1.5em; transform: rotate(15deg); font-weight: bold; opacity: 0.6; z-index: 60; pointer-events: none; font-family: 'Courier Prime'; }
-.divider { border: 0; border-top: 1px dashed #444; margin: 20px 0; }
-
-/* --- 4. PIE DE PÁGINA Y FIRMA CENTRADA (Global) --- */
+/* --- 6. PIE DE PÁGINA --- */
 .return-link.centered {
-    width: 100%;
-    text-align: center;
-    padding: 60px 0;
-    margin-top: auto; /* Mantiene la firma al fondo */
-    position: relative;
-    z-index: 1000;
+    width: 100%; text-align: center; padding: 60px 0; margin-top: auto; position: relative; z-index: 1000;
 }
 
 .return-link.centered a {
-    color: #444; /* Gris oscuro sutil */
-    text-decoration: none;
-    font-family: 'Cinzel', serif;
-    font-size: 0.8em;
-    letter-spacing: 4px;
-    transition: 0.4s;
-    text-transform: uppercase;
-    display: inline-block;
+    color: #444; text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.8em;
+    letter-spacing: 4px; transition: 0.4s; text-transform: uppercase; display: inline-block;
 }
 
-.return-link.centered a:hover {
-    color: var(--color-accent-blood);
-    text-shadow: 0 0 10px rgba(94, 13, 13, 0.5);
-}
-
-/* Versión alternativa para el escritorio */
-.return-link:not(.centered) {
-    width: 100%;
-    max-width: 650px;
-    margin-bottom: 20px;
-    z-index: 1000;
-    position: relative;
-}
+.return-link.centered a:hover { color: var(--color-accent-blood); text-shadow: 0 0 10px rgba(94, 13, 13, 0.5); }
