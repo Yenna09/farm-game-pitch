@@ -282,3 +282,36 @@ body {
     opacity: 0.6;
     z-index: 15;
 }
+.desk-surface {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 900px; /* Ajusta según el largo de tus hojas */
+    margin-top: 20px;
+}
+
+/* Estado de la hoja que está detrás */
+.background-sheet {
+    position: absolute !important;
+    top: 20px !important;
+    left: 40px !important; /* La desplazamos a la derecha */
+    z-index: 5 !important;
+    cursor: pointer;
+    filter: brightness(0.6) blur(1px); /* Más oscura porque está en la sombra */
+    transform: rotate(2deg) scale(0.98) !important;
+    transition: all 0.5s ease;
+}
+
+/* Estado de la hoja activa (al frente) */
+.active {
+    position: relative;
+    z-index: 20 !important;
+    transform: rotate(0.5deg) scale(1) !important;
+    filter: brightness(1) blur(0);
+    transition: all 0.5s ease;
+}
+
+.official-dossier:hover.background-sheet {
+    filter: brightness(0.8) blur(0);
+    left: 50px !important; /* Se asoma más al pasar el mouse */
+}
