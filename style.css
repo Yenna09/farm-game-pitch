@@ -1,5 +1,5 @@
 /* ==========================================================================
-   YIB STUDIO & FARM GAME - MASTER STYLE (INTERROGATORIO + DARK ACADEMIA)
+   YIB STUDIO & FARM GAME - MASTER STYLE (FINAL UNIFICADO)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap');
@@ -15,7 +15,14 @@
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; padding: 0; }
+
+body { 
+    margin: 0; 
+    padding: 0; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
 /* --- 1. ANIMACIONES GLOBALES --- */
 @keyframes typing { from { width: 0 } to { width: 100%; border-color: transparent; } }
@@ -34,12 +41,11 @@ body { margin: 0; padding: 0; }
     to { text-shadow: 0 0 25px rgba(255, 255, 255, 0.4); opacity: 1; }
 }
 
-/* --- 2. TEMA PRINCIPAL: YIB STUDIO (Home) --- */
+/* --- 2. TEMA PRINCIPAL: YIB STUDIO (Home / Equipo / Contacto) --- */
 .main-theme {
     background-color: var(--color-dark-void) !important;
     color: var(--color-text-main);
     font-family: 'Crimson Text', serif;
-    min-height: 100vh;
 }
 
 .main-theme header {
@@ -97,11 +103,12 @@ body { margin: 0; padding: 0; }
     margin: 60px auto !important;
     padding: 50px;
     text-align: center;
+    flex: 1; /* Empuja el footer hacia abajo */
 }
 
 .main-theme h2 { font-family: 'Cinzel', serif !important; color: #fff; margin-bottom: 30px; }
 
-/* Tarjetas de Proyecto Dark Academia */
+/* Tarjetas de Proyecto / Equipo */
 .project-card {
     background: rgba(10, 10, 10, 0.8);
     border: 1px solid #222;
@@ -132,11 +139,7 @@ body { margin: 0; padding: 0; }
     z-index: 200;
 }
 
-.btn-dossier:hover {
-    background: var(--color-accent-blood);
-    border-color: var(--color-accent-blood);
-    color: white;
-}
+.btn-dossier:hover { background: var(--color-accent-blood); border-color: var(--color-accent-blood); color: white; }
 
 /* --- 3. TEMA SECUNDARIO: FARM GAME (Interrogatorio) --- */
 .bureaucracy-page {
@@ -204,7 +207,7 @@ body { margin: 0; padding: 0; }
     font-family: 'Cinzel', serif; 
 }
 
-/* Foto Polaroid */
+/* Polaroid y Otros */
 .polaroid-wrapper { 
     background-color: var(--color-paper); 
     padding: 10px 10px 35px 10px; 
@@ -213,32 +216,42 @@ body { margin: 0; padding: 0; }
     display: inline-block;
 }
 .polaroid-img { width: 150px; height: 150px; object-fit: contain; image-rendering: pixelated; background: #000; }
-
 .suspect-profile { display: flex; align-items: center; gap: 40px; margin: 20px 0; text-align: left; }
 .suspect-data p { font-family: 'Courier Prime'; font-size: 1.1em; margin: 10px 0; }
+.stamp-red { position: absolute; top: 30px; right: 20px; border: 3px double var(--color-stamp); color: var(--color-stamp); padding: 5px 10px; font-size: 1.5em; transform: rotate(15deg); font-weight: bold; opacity: 0.6; z-index: 60; pointer-events: none; font-family: 'Courier Prime'; }
+.divider { border: 0; border-top: 1px dashed #444; margin: 20px 0; }
 
-/* Otros */
-.stamp-red { 
-    position: absolute; 
-    top: 30px; right: 20px; 
-    border: 3px double var(--color-stamp); 
-    color: var(--color-stamp); 
-    padding: 5px 10px; 
-    font-size: 1.5em; 
-    transform: rotate(15deg); 
-    font-weight: bold; 
-    opacity: 0.6; 
-    z-index: 60; 
-    pointer-events: none; 
-    font-family: 'Courier Prime'; 
+/* --- 4. PIE DE PÁGINA Y FIRMA CENTRADA (Global) --- */
+.return-link.centered {
+    width: 100%;
+    text-align: center;
+    padding: 60px 0;
+    margin-top: auto; /* Mantiene la firma al fondo */
+    position: relative;
+    z-index: 1000;
 }
 
-.return-link { 
-    width: 100%; 
-    max-width: 650px; 
-    margin-bottom: 20px; 
-    z-index: 1000; 
-    position: relative; 
+.return-link.centered a {
+    color: #444; /* Gris oscuro sutil */
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8em;
+    letter-spacing: 4px;
+    transition: 0.4s;
+    text-transform: uppercase;
+    display: inline-block;
 }
 
-.return-link a { color: #888; text-decoration: none; font-family: 'Courier Prime'; font-size: 1.2em; }
+.return-link.centered a:hover {
+    color: var(--color-accent-blood);
+    text-shadow: 0 0 10px rgba(94, 13, 13, 0.5);
+}
+
+/* Versión alternativa para el escritorio */
+.return-link:not(.centered) {
+    width: 100%;
+    max-width: 650px;
+    margin-bottom: 20px;
+    z-index: 1000;
+    position: relative;
+}
