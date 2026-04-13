@@ -1,5 +1,5 @@
 /* ==========================================================================
-   YIB STUDIO & FARM GAME - ESTILOS DEFINITIVOS Y APILADOS
+   YIB STUDIO & FARM GAME - ESTILO INTERROGATORIO UNIFICADO
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap');
@@ -10,11 +10,23 @@
     --color-accent-blood: #5e0d0d;
     --color-paper: #e5e0d2;
     --color-document-dark: #121212;
-    --color-desk: #22140b;
+    --color-desk: #0d0803; /* Madera de interrogatorio (Casi negra) */
+    --color-stamp: #8b0000;
 }
 
 * { box-sizing: border-box; }
 body { margin: 0; padding: 0; }
+
+/* --- ANIMACIONES GLOBALES --- */
+@keyframes typing { from { width: 0 } to { width: 100%; border-color: transparent; } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Animación de Péndulo (Luz de Interrogatorio) */
+@keyframes swayInterrogation {
+    0% { transform: translateX(-25%) rotate(-5deg); opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { transform: translateX(25%) rotate(5deg); opacity: 0.8; }
+}
 
 /* --- TEMA 1: YIB STUDIO (PÁGINA PRINCIPAL) --- */
 .main-theme {
@@ -91,44 +103,54 @@ body { margin: 0; padding: 0; }
     color: white;
 }
 
-/* --- TEMA 2: FARM GAME (EXPEDIENTES APILADOS) --- */
+/* --- TEMA 2: FARM GAME (EXPEDIENTES Y MESA) --- */
 .bureaucracy-page {
     background-color: var(--color-desk) !important;
-    background-image: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%), 
-                      url('https://www.transparenttextures.com/patterns/wood-pattern.png') !important;
+    background-image: 
+        radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 80%),
+        url('https://www.transparenttextures.com/patterns/wood-pattern.png') !important;
     background-attachment: fixed;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
+    overflow-x: hidden;
 }
 
-/* LUZ OSCILANTE */
+/* EL HAZ DE LUZ OSCILANTE */
 .bureaucracy-page::before {
     content: "";
-    position: fixed; top: -10%; left: 0; width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(255, 190, 80, 0.15) 0%, transparent 70%);
-    pointer-events: none; z-index: 10; filter: blur(40px);
-    animation: moveLight 8s ease-in-out infinite alternate !important;
+    position: fixed; 
+    top: -20%; 
+    left: 0; 
+    width: 100vw; 
+    height: 140vh;
+    background: radial-gradient(
+        circle at 50% 50%, 
+        rgba(255, 230, 150, 0.25) 0%,   /* Núcleo de la luz */
+        rgba(255, 200, 100, 0.08) 30%,  /* Difusión */
+        transparent 60%                 /* Oscuridad total */
+    );
+    pointer-events: none; 
+    z-index: 100; /* Baña los documentos al pasar */
+    filter: blur(60px);
+    animation: swayInterrogation 10s ease-in-out infinite alternate !important;
 }
 
-@keyframes moveLight { 0% { left: -10%; } 100% { left: 70%; } }
-
-/* EL ESCRITORIO */
 .desk-surface { 
     position: relative; 
     width: 100%; 
     max-width: 650px; 
-    height: 850px; /* Altura fija necesaria para que las hojas floten */
+    height: 850px; 
     margin: 40px auto; 
+    z-index: 10;
 }
 
-/* ESTILO BASE DE LAS HOJAS */
+/* SISTEMA DE HOJAS */
 .official-dossier {
-    position: absolute; /* CLAVE: Esto hace que se encimen */
-    top: 0;
-    left: 0;
+    position: absolute;
+    top: 0; left: 0;
     width: 100%;
     background-color: var(--color-paper);
     padding: 20px;
@@ -137,14 +159,12 @@ body { margin: 0; padding: 0; }
     cursor: pointer;
 }
 
-/* HOJA ACTIVA (AL FRENTE) */
 .official-dossier.active { 
     z-index: 50; 
     transform: rotate(0.5deg) translateY(0); 
     filter: brightness(1); 
 }
 
-/* HOJA DE FONDO (ATRÁS) */
 .official-dossier.background-sheet { 
     z-index: 10; 
     transform: rotate(3deg) translate(20px, 15px); 
@@ -152,7 +172,6 @@ body { margin: 0; padding: 0; }
 }
 
 .official-dossier.background-sheet:hover { 
-    left: 45px; 
     filter: brightness(0.6); 
     transform: rotate(4deg) translate(35px, 20px);
 }
@@ -173,21 +192,56 @@ body { margin: 0; padding: 0; }
     box-shadow: 5px 10px 20px rgba(0,0,0,0.5);
     display: inline-block;
 }
-.polaroid-img { width: 150px; height: 150px; object-fit: contain; image-rendering: pixelated; background: #000; }
+
+.polaroid-img { 
+    width: 150px; height: 150px; 
+    object-fit: contain; 
+    image-rendering: pixelated; 
+    background: #000; 
+}
 
 .suspect-profile { display: flex; align-items: center; gap: 40px; margin: 20px 0; text-align: left; }
 .suspect-data p { font-family: 'Courier Prime'; font-size: 1.1em; margin: 10px 0; }
 
-/* ANIMACIONES DE TEXTO */
-.typewriter-line-1, .typewriter-line-2 { overflow: hidden; white-space: nowrap; border-right: 3px solid var(--color-paper); width: 0; }
+/* ELEMENTOS DE TEXTO */
+.typewriter-line-1, .typewriter-line-2 { 
+    overflow: hidden; 
+    white-space: nowrap; 
+    border-right: 3px solid var(--color-paper); 
+    width: 0; 
+}
+
 .typewriter-line-1 { animation: typing 1.5s steps(30, end) forwards; }
 .typewriter-line-2 { animation: typing 1.5s steps(30, end) 1.5s forwards; }
 
-@keyframes typing { from { width: 0 } to { width: 100%; border-color: transparent; } }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+.stamp-red { 
+    position: absolute; 
+    top: 30px; right: 20px; 
+    border: 3px double var(--color-stamp); 
+    color: var(--color-stamp); 
+    padding: 5px 10px; 
+    font-size: 1.5em; 
+    transform: rotate(15deg); 
+    font-weight: bold; 
+    opacity: 0.6; 
+    z-index: 60; 
+    pointer-events: none; 
+    font-family: 'Courier Prime'; 
+}
 
-/* OTROS ELEMENTOS */
-.stamp-red { position: absolute; top: 30px; right: 20px; border: 3px double #8b0000; color: #8b0000; padding: 5px 10px; font-size: 1.5em; transform: rotate(15deg); font-weight: bold; opacity: 0.6; z-index: 60; pointer-events: none; font-family: 'Courier Prime'; }
 .divider { border: 0; border-top: 1px dashed #444; margin: 20px 0; }
-.return-link { width: 100%; max-width: 650px; margin-bottom: 20px; z-index: 1000; position: relative; }
-.return-link a { color: #888; text-decoration: none; font-family: 'Courier Prime'; font-size: 1.2em; }
+
+.return-link { 
+    width: 100%; 
+    max-width: 650px; 
+    margin-bottom: 20px; 
+    z-index: 1000; 
+    position: relative; 
+}
+
+.return-link a { 
+    color: #888; 
+    text-decoration: none; 
+    font-family: 'Courier Prime'; 
+    font-size: 1.2em; 
+}
