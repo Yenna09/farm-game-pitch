@@ -14,31 +14,24 @@
 
     <main class="desk-surface">
         
-        <article class="official-dossier active" id="dossier-filip" onclick="switchSheet('dossier-filip')">
-            <div class="folder-label">FORMULARIO 11-A</div>
+        <article class="official-dossier active" id="hoja-filip" onclick="traerAlFrente('hoja-filip')">
             <div class="dossier-inner">
                 <div class="stamp-red">DENEGADO</div>
-                
                 <header class="dossier-header">
                     <span class="id-tag">ARCH-09-FILIP</span>
                     <h2>REPORTE DE PROYECTO:<br>FARM GAME</h2>
                 </header>
-
                 <hr class="divider">
-
                 <section class="suspect-profile">
                     <div class="polaroid-wrapper">
-                        <img src="filip.png.gif" alt="Sujeto: Filip" class="polaroid-img">
+                        <img src="filip.png.gif" alt="Filip" class="polaroid-img">
                     </div>
-                    
                     <div class="suspect-data">
                         <p class="typewriter-line-1"><strong>PROTAGONISTA:</strong> Filip (Conejo)</p>
                         <p class="typewriter-line-2"><strong>ESTADO:</strong> En Desarrollo (Unity)</p>
                     </div>
                 </section>
-
                 <hr class="divider">
-
                 <div class="rules-box">
                     <h3>REGLAMENTO VIGENTE</h3>
                     <ul>
@@ -49,7 +42,7 @@
             </div>
         </article>
 
-        <article class="official-dossier background-sheet" id="dossier-team" onclick="switchSheet('dossier-team')">
+        <article class="official-dossier background-sheet" id="hoja-equipo" onclick="traerAlFrente('hoja-equipo')">
             <div class="folder-label">ANEXO DE PERSONAL</div>
             <div class="dossier-inner">
                 <header class="dossier-header">
@@ -58,31 +51,43 @@
                 </header>
                 <hr class="divider">
                 <div class="rules-box">
-                    <ul class="team-list" style="list-style: none; padding: 0; font-family: 'Courier Prime';">
+                    <ul class="team-list" style="list-style: none; padding: 0; font-family: 'Courier Prime'; line-height: 2;">
                         <li><strong>IVÁN RAMÍREZ:</strong> Lead Programmer</li>
                         <li><strong>IVO AGUSTÍN ANRIQUEZ:</strong> Art Director</li>
                         <li><strong>VALENTINA ZABALA LERENA:</strong> Lead Producer</li>
                         <li><strong>MIQUEAS OMAR CENTURIÓN:</strong> Game Designer</li>
-                        <li><strong>ANDRÉS ALEJANDRO TOSINI:</strong> Secondary Programmer</li>
+                        <li><strong>ANDRÉS ALEJANDRO TOSINI:</strong> Programmer</li>
                     </ul>
                 </div>
-                <p style="font-family: 'Courier Prime'; font-size: 0.8em; margin-top: 40px; text-align: center; opacity: 0.6;">
-                    -- TODO EL PERSONAL DEBE PORTAR IDENTIFICACIÓN --
-                </p>
             </div>
         </article>
     </main>
 
     <script>
-        function switchSheet(id) {
-            const filip = document.getElementById('dossier-filip');
-            const team = document.getElementById('dossier-team');
-            if (id === 'dossier-team') {
-                team.classList.replace('background-sheet', 'active');
-                filip.classList.replace('active', 'background-sheet');
+        function traerAlFrente(idClickeada) {
+            const hojaFilip = document.getElementById('hoja-filip');
+            const hojaEquipo = document.getElementById('hoja-equipo');
+
+            if (idClickeada === 'hoja-equipo') {
+                // Pasamos el equipo al frente
+                hojaEquipo.style.zIndex = "30";
+                hojaEquipo.classList.remove('background-sheet');
+                hojaEquipo.classList.add('active');
+
+                // Mandamos a Filip atrás
+                hojaFilip.style.zIndex = "5";
+                hojaFilip.classList.remove('active');
+                hojaFilip.classList.add('background-sheet');
             } else {
-                filip.classList.replace('background-sheet', 'active');
-                team.classList.replace('active', 'background-sheet');
+                // Pasamos a Filip al frente
+                hojaFilip.style.zIndex = "30";
+                hojaFilip.classList.remove('background-sheet');
+                hojaFilip.classList.add('active');
+
+                // Mandamos al equipo atrás
+                hojaEquipo.style.zIndex = "5";
+                hojaEquipo.classList.remove('active');
+                hojaEquipo.classList.add('background-sheet');
             }
         }
     </script>
