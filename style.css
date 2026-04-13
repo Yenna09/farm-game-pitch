@@ -215,5 +215,82 @@ footer {
     }
 }
 
+/* --- AMBIENTE: MESA DE MADERA Y LUZ DE VELADOR --- */
+.bureaucracy-page {
+    /* Simulamos la madera con un degradado lineal */
+    background: 
+        radial-gradient(circle at 15% 50%, rgba(255, 240, 150, 0.15) 0%, rgba(0,0,0,0.6) 60%),
+        linear-gradient(90deg, #2a1b0a 0%, #3d2b16 50%, #2a1b0a 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    overflow-x: hidden;
+}
+
+/* Efecto de luz tenue (Velador de costado) */
+.bureaucracy-page::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Gradiente radial descentrado que simula la lámpara a la izquierda */
+    background: radial-gradient(circle at 10% 40%, rgba(255, 220, 100, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* --- EL PAPEL ENVEJECIDO (EL EXPEDIENTE) --- */
+.official-dossier {
+    background-color: #e8e2d2; /* Tono base hueso/pergamino */
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2), rgba(0,0,0,0.05));
+    color: #333;
+    max-width: 750px;
+    padding: 60px;
+    border: 1px solid #c4bc9d;
+    position: relative;
+    /* Sombra profunda para que el papel parezca levantado de la mesa */
+    box-shadow: 
+        2px 2px 0px #b5ae96,
+        15px 15px 40px rgba(0,0,0,0.7);
+    font-family: 'Courier Prime', monospace;
+    transform: rotate(0.5deg); /* Ligera inclinación natural */
+}
+
+/* Manchas de desgaste en el papel */
+.official-dossier::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 80% 10%, rgba(139, 69, 19, 0.05) 0%, transparent 30%);
+    pointer-events: none;
+}
+
+.id-tag {
+    background: #222;
+    color: #fff;
+    padding: 2px 10px;
+    font-size: 0.8em;
+    letter-spacing: 2px;
+}
+
+.stamp-red {
+    position: absolute;
+    top: 50px;
+    right: 40px;
+    border: 5px double #8b0000;
+    color: #8b0000;
+    padding: 10px 20px;
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transform: rotate(15deg);
+    opacity: 0.6;
+    mix-blend-mode: multiply; /* Hace que el sello parezca tinta sobre papel */
+}
+
 .field-box { border: 2px solid #888; padding: 15px; margin-top: 20px; }
 .return-link a { color: #888; text-decoration: none; font-size: 0.8em; }
