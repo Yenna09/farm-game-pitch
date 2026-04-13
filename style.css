@@ -62,6 +62,17 @@ body {
 /* ==========================================================================
    3. TEMA PRINCIPAL: YIB STUDIO (index.html)
    ========================================================================== */
+.main-theme main {
+    max-width: 850px;       /* Ancho máximo del contenido */
+    margin: 60px auto;     /* El 'auto' es lo que centra la caja en la pantalla */
+    padding: 50px;
+    text-align: center;    /* Centra el texto dentro de la caja */
+    display: flex;         /* Usamos flexbox para asegurar el orden vertical */
+    flex-direction: column;
+    align-items: center;   /* Centra los elementos (como el botón) horizontalmente */
+    justify-content: center;
+}
+
 .main-theme {
     background-color: var(--color-dark-void); 
     color: var(--color-text-main); 
@@ -149,36 +160,29 @@ body {
     position: relative;
 }
 
-/* LUZ TENUE Y OSCILANTE (EL VELADOR) */
+/* LUZ TENUE Y OSCILANTE (CORREGIDA) */
 .bureaucracy-page::before {
     content: "";
     position: fixed; 
-    top: 0; 
+    top: -10%; 
     left: 0; 
-    width: 100vw; /* Usamos el ancho total de la ventana */
-    height: 100vh;
-    /* Reducimos el tamaño del haz de luz para que el movimiento sea más notorio */
-    background: radial-gradient(circle at 50% 40%, rgba(255, 190, 80, 0.2) 0%, transparent 40%);
+    width: 600px; /* Tamaño del haz de luz */
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 190, 80, 0.15) 0%, transparent 70%);
     pointer-events: none; 
     z-index: 10;
+    filter: blur(40px);
     
-    /* Animación forzada */
-    animation: lampSway 8s ease-in-out infinite alternate !important;
+    /* Animación de movimiento horizontal */
+    animation: moveLight 8s ease-in-out infinite alternate !important;
 }
 
-/* Animación: Movimiento real del haz de luz */
-@keyframes lampSway {
-    0% {
-        /* Movemos el haz hacia la izquierda */
-        background-position: -20% 0%;
-        filter: brightness(0.9);
-    }
-    100% {
-        /* Movemos el haz hacia la derecha */
-        background-position: 20% 0%;
-        filter: brightness(1.1); /* Agregamos un leve parpadeo de intensidad */
-    }
+@keyframes moveLight {
+    0% { left: -10%; opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { left: 70%; opacity: 0.8; }
 }
+
 .return-link {
     width: 100%;
     max-width: 650px;
